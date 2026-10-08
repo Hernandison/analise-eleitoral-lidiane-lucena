@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra Lidiane Lucena · 44000 · UNIÃO — Análise Eleitoral · Sergipe 2026</title>
+<meta name="description" content="Relatório de inteligência eleitoral interativo de Dra Lidiane Lucena (44000, UNIÃO) — Deputado Estadual, Sergipe, eleições 2026, 1º turno. Dados oficiais do TSE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#topo" class="brand">
+      <span class="brand-num">44000</span>
+      <span class="brand-name">Dra Lidiane Lucena <small>· UNIÃO</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#resumo">Resumo</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#ranking">Ranking</a>
+      <a href="#municipios">Municípios</a>
+      <a href="#secoes">Seções</a>
+      <a href="#redutos">Redutos</a>
+      <a href="#downloads" class="btn-nav">Downloads</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-kicker">Relatório de Inteligência Eleitoral · Eleições 2026 · 1º turno</p>
+    <h1 class="hero-title">DRA LIDIANE LUCENA</h1>
+    <p class="hero-sub"><b>44000</b> · UNIÃO · Deputado Estadual · Sergipe</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="num" data-target="33935">0</span><span class="lbl">votos nominais</span></div>
+      <div class="hstat"><span class="num prefix" data-target="8" data-suffix="º">0</span><span class="lbl">lugar entre 213</span></div>
+      <div class="hstat"><span class="num" data-target="2.62" data-decimals="2" data-suffix="%">0</span><span class="lbl">dos votos válidos</span></div>
+      <div class="hstat"><span class="num" data-target="75">0</span><span class="lbl">municípios (de 75)</span></div>
+      <div class="hstat"><span class="num" data-target="3">0</span><span class="lbl">municípios em 1º</span></div>
+      <div class="hstat"><span class="num" data-target="4305">0</span><span class="lbl">seções com voto</span></div>
+    </div>
+    <a href="#resumo" class="hero-scroll">Explorar análise ↓</a>
+  </div>
+</section>
+
+<!-- RESUMO -->
+<section class="section" id="resumo">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">01 · Panorama</span>
+      <h2>Resumo executivo</h2>
+      <p class="sec-desc">Dra Lidiane Lucena somou <b>33.935 votos</b> (8º de 213) para Deputado Estadual em Sergipe. Perfil <b>territorializado</b>: 44,5% dos votos vêm de apenas 5 municípios, com presença em redutos do interior e volume na Grande Aracaju.</p>
+    </div>
+    <div class="cards" id="insightCards"></div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="section alt" id="mapa">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">02 · Território</span>
+      <h2>Mapa interativo de Sergipe</h2>
+      <p class="sec-desc">Passe o mouse (ou toque) em cada município. Alterne entre percentual dos votos válidos e votos absolutos.</p>
+    </div>
+    <div class="map-wrap">
+      <div class="map-toggle">
+        <button class="mt-btn active" data-metric="pctVal">% dos válidos</button>
+        <button class="mt-btn" data-metric="votos">Votos absolutos</button>
+      </div>
+      <div class="map-grid">
+        <div id="map"></div>
+        <aside class="map-info" id="mapInfo">
+          <h3>Selecione um município</h3>
+          <p class="mi-hint">Passe o cursor sobre o mapa para ver os detalhes de cada cidade.</p>
+        </aside>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RANKING -->
+<section class="section" id="ranking">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">03 · Competição</span>
+      <h2>Ranking estadual — Deputado Estadual</h2>
+      <p class="sec-desc">Os 20 candidatos mais votados do estado para Deputado Estadual. Lidiane (destacado) ficou em <b>8º lugar</b>, a <b>18.830 votos</b> do 1º colocado.</p>
+    </div>
+    <div class="chart-card"><div class="chart-box ranking"><canvas id="rankingChart"></canvas></div></div>
+  </div>
+</section>
+
+<!-- MUNICIPIOS -->
+<section class="section alt" id="municipios">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">04 · Municípios</span>
+      <h2>Desempenho por município</h2>
+      <p class="sec-desc">Volume de votos e grau de domínio (percentual) nas principais cidades. Tabela completa, pesquisável e ordenável, com os 75 municípios.</p>
+    </div>
+    <div class="grid-2">
+      <div class="chart-card"><h4>Top 12 por votos absolutos</h4><div class="chart-box"><canvas id="topVotosChart"></canvas></div></div>
+      <div class="chart-card"><h4>Top 12 por % dos válidos (redutos)</h4><div class="chart-box"><canvas id="topPctChart"></canvas></div></div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-tools">
+        <input type="search" id="tblSearch" placeholder="🔎 Buscar município...">
+        <span class="table-count" id="tblCount"></span>
+      </div>
+      <div class="table-scroll">
+        <table id="munTable">
+          <thead>
+            <tr>
+              <th data-k="posicaoList" class="num">#</th>
+              <th data-k="nome">Município</th>
+              <th data-k="votos" class="num sortable">Votos</th>
+              <th data-k="pctVal" class="num sortable">% válidos</th>
+              <th data-k="posicao" class="num sortable">Pos. local</th>
+              <th data-k="secoes" class="num sortable">Seções</th>
+              <th data-k="media_sec" class="num sortable">Méd./seção</th>
+              <th data-k="maior_sec" class="num sortable">Maior seção</th>
+            </tr>
+          </thead>
+          <tbody id="munTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECOES -->
+<section class="section" id="secoes">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">05 · Seções / Urnas</span>
+      <h2>Análise por seção eleitoral</h2>
+      <p class="sec-desc">Como os votos se distribuem entre as 4.305 urnas em que Lidiane pontuou. A mediana (3) bem abaixo da média (7,9) revela um núcleo de urnas de alta performance.</p>
+    </div>
+    <div class="cards" id="secCards"></div>
+    <div class="grid-2">
+      <div class="chart-card"><h4>Distribuição das seções por faixa de votos</h4><div class="chart-box"><canvas id="histChart"></canvas></div></div>
+      <div class="chart-card">
+        <h4>As 12 urnas mais produtivas</h4>
+        <div class="table-scroll compact">
+          <table id="topSecTable"><thead><tr><th>Município</th><th class="num">Zona</th><th class="num">Seção</th><th class="num">Votos</th></tr></thead><tbody id="topSecBody"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-sub">
+      <h3>Explore todas as seções por município</h3>
+      <p>Selecione um município para ver cada seção eleitoral — com o <b>local de votação (colégio/escola)</b>, o <b>bairro/povoado</b> e a quantidade de votos.</p>
+    </div>
+    <div class="explorer">
+      <div class="exp-tools">
+        <select id="secMunSel" aria-label="Município"></select>
+        <input type="search" id="secSearch" placeholder="🔎 Filtrar por local ou bairro...">
+        <span class="exp-sum" id="secSummary"></span>
+      </div>
+      <div class="table-scroll" style="max-height:540px">
+        <table id="secDetTable">
+          <thead><tr><th class="num">Zona</th><th class="num">Seção</th><th>Local de votação (colégio/escola)</th><th>Bairro / Povoado</th><th class="num">Votos</th></tr></thead>
+          <tbody id="secDetBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REDUTOS -->
+<section class="section alt" id="redutos">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">06 · Bases eleitorais</span>
+      <h2>Redutos — onde foi o candidato mais votado</h2>
+      <p class="sec-desc">Municípios onde Lidiane foi o candidato a Deputado Estadual mais votado, vencendo todos os 212 concorrentes. Núcleo duro da candidatura.</p>
+    </div>
+    <div class="redutos-grid" id="redutosGrid"></div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section class="section" id="downloads">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">07 · Materiais</span>
+      <h2>Downloads</h2>
+      <p class="sec-desc">Relatórios em PDF e planilhas com os dados oficiais completos.</p>
+    </div>
+    <div class="dl-grid">
+      <a class="dl-card" href="downloads/Relatorio_Lidiane_Tabela_2paginas.pdf" download>
+        <div class="dl-ic">PDF</div>
+        <div><h4>Tabela resumida (2 páginas)</h4><p>Votos e % por município + resumo por seção</p></div>
+      </a>
+      <a class="dl-card" href="downloads/Relatorio_Lidiane_Completo.pdf" download>
+        <div class="dl-ic">PDF</div>
+        <div><h4>Relatório completo (78 páginas)</h4><p>Mapas e uma página por município</p></div>
+      </a>
+      <a class="dl-card" href="downloads/Relatorio_Lidiane_Secoes_por_Municipio.pdf" download>
+        <div class="dl-ic">PDF</div>
+        <div><h4>Seções por município (81 páginas)</h4><p>Todas as seções com colégio, bairro/povoado e votos</p></div>
+      </a>
+      <a class="dl-card" href="downloads/lidiane_secoes_detalhado.csv" download>
+        <div class="dl-ic csv">CSV</div>
+        <div><h4>Seções detalhado</h4><p>4.305 seções com local de votação e bairro</p></div>
+      </a>
+      <a class="dl-card" href="downloads/lidiane_por_municipio.csv" download>
+        <div class="dl-ic csv">CSV</div>
+        <div><h4>Votos por município</h4><p>Planilha com totais, % e comparecimento</p></div>
+      </a>
+      <a class="dl-card" href="downloads/lidiane_por_secao.csv" download>
+        <div class="dl-ic csv">CSV</div>
+        <div><h4>Votos por seção (4.305 linhas)</h4><p>Detalhe por urna em cada município</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>Dra Lidiane Lucena · 44000 · UNIÃO</h4>
+        <p>Deputado Estadual — Sergipe · Eleições 2026 · 1º turno (04/10/2026)</p>
+      </div>
+      <div class="foot-meta">
+        <p><b>Fonte:</b> TSE — Boletim de Urna Web (BWEB), 1º turno 2026.</p>
+        <p><b>Malha geográfica:</b> IBGE. <b>Votos válidos</b> = nominais + legenda do cargo.</p>
+        <p class="foot-note">Relatório analítico independente baseado em dados públicos oficiais.</p>
+      </div>
+    </div>
+    <div class="foot-credit">
+      <span class="fc-copy">© 2026 <b>Hernandison</b> · Análise de dados &amp; desenvolvimento</span>
+      <div class="foot-social">
+        <a href="https://instagram.com/hernandison" target="_blank" rel="noopener" aria-label="Instagram @hernandison">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.86s0 3.6-.07 4.86c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.6 0-4.86-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.86c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2m0 1.98c-3.14 0-3.52.01-4.76.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7-.06 1.24-.07 1.62-.07 4.76s.01 3.52.07 4.76c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.24.06 1.62.07 4.76.07s3.52-.01 4.76-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.06-1.24.07-1.62.07-4.76s-.01-3.52-.07-4.76c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32-1.24-.06-1.62-.07-4.76-.07m0 3.37a4.45 4.45 0 1 1 0 8.9 4.45 4.45 0 0 1 0-8.9m0 7.34a2.89 2.89 0 1 0 0-5.78 2.89 2.89 0 0 0 0 5.78m5.67-7.56a1.04 1.04 0 1 1-2.08 0 1.04 1.04 0 0 1 2.08 0"/></svg>
+          <span>@hernandison</span>
+        </a>
+        <a href="https://www.linkedin.com/in/hernandison/" target="_blank" rel="noopener" aria-label="LinkedIn Hernandison">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14M7.12 20.45H3.56V9h3.56v11.45M22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0"/></svg>
+          <span>in/hernandison</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="data/dados.js"></script>
+<script src="data/secoes.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
